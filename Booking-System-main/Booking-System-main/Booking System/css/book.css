@@ -1,0 +1,335 @@
+:root {
+    color-scheme: light;
+    --ink: #20302a;
+    --leaf: #24684f;
+    --leaf-dark: #174b39;
+    --mint: #c4e3d2;
+    --line: #d7dfdb;
+    --muted: #62706a;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    height: 100svh;
+    margin: 0;
+    overflow: hidden;
+    isolation: isolate;
+    color: #fff;
+    font-family: "Segoe UI", sans-serif;
+    background: none;
+    --page-background:
+        linear-gradient(110deg, rgba(13, 30, 24, 0.76), rgba(13, 30, 24, 0.38)),
+        url("../img/big_pool2.jpg") center / cover fixed no-repeat;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: var(--page-background);
+    pointer-events: none;
+}
+
+html.is-leaving body {
+    animation: public-page-exit 220ms ease-in-out both;
+}
+
+html.is-entering body {
+    animation: public-page-enter 220ms ease-in-out both;
+}
+
+@keyframes public-page-exit {
+    to {
+        opacity: 0;
+        transform: translateX(-1.5%) scale(1.01);
+    }
+}
+
+@keyframes public-page-enter {
+    from {
+        opacity: 0;
+        transform: translateX(1.5%) scale(1.01);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html.is-leaving body,
+    html.is-entering body {
+        animation-duration: 1ms;
+    }
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    width: min(100%, 1240px);
+    margin: 0 auto;
+    padding: 12px 24px;
+}
+
+.logo-text {
+    margin: 0;
+    font-size: 24px;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.nav-link {
+    display: inline-block;
+    padding: 8px 0;
+    font-size: 16px;
+}
+
+.nav-link:hover,
+.nav-link:focus-visible,
+.nav-link[aria-current="page"] {
+    color: var(--mint);
+}
+
+.booking-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    align-items: center;
+    gap: 64px;
+    width: min(100%, 1120px);
+    flex: 1;
+    margin: 0 auto;
+    padding: 16px 24px;
+}
+
+.booking-intro {
+    max-width: 420px;
+}
+
+.eyebrow {
+    margin: 0 0 16px;
+    color: var(--mint);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.booking-intro h1 {
+    margin: 0;
+    font-family: Georgia, serif;
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 1.08;
+}
+
+.intro-copy {
+    max-width: 38ch;
+    margin: 20px 0 0;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 17px;
+    line-height: 1.65;
+}
+
+.booking-panel {
+    padding: 24px;
+    border-radius: 6px;
+    color: var(--ink);
+    background: #fff;
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.2);
+}
+
+.booking-panel h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.form-intro {
+    margin: 6px 0 16px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.field-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 16px;
+}
+
+.field {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.field-full {
+    grid-column: 1 / -1;
+}
+
+.field label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.field label span {
+    color: var(--muted);
+    font-weight: 400;
+}
+
+.field input,
+.field textarea,
+.field select {
+    width: 100%;
+    min-width: 0;
+    padding: 9px 10px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    color: var(--ink);
+    background: #fff;
+    font: inherit;
+    font-size: 15px;
+}
+
+.field textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+    border-color: var(--leaf);
+    outline: 3px solid rgba(36, 104, 79, 0.16);
+}
+
+.submit-button {
+    width: 100%;
+    margin-top: 14px;
+    padding: 11px 18px;
+    border: 0;
+    border-radius: 4px;
+    color: #fff;
+    background: var(--leaf);
+    font: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.submit-button:hover,
+.submit-button:focus-visible {
+    background: var(--leaf-dark);
+}
+
+.form-note,
+.booking-feedback {
+    margin: 12px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.booking-feedback {
+    padding: 12px;
+    border-left: 3px solid var(--leaf);
+    color: var(--ink);
+    background: #eef6f1;
+}
+
+.booking-feedback.is-error {
+    border-left-color: #a64c43;
+    color: #70352f;
+    background: #fff3f1;
+}
+
+@media (max-width: 760px) {
+    .booking-layout {
+        grid-template-columns: 1fr;
+        gap: 0;
+        max-width: 640px;
+        padding: 8px 16px;
+    }
+
+    .booking-intro {
+        display: none;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        flex-direction: column;
+        gap: 4px;
+        padding: 8px 16px;
+    }
+
+    .nav-menu {
+        gap: 22px;
+    }
+
+    .nav-link {
+        white-space: nowrap;
+    }
+
+    .booking-layout {
+        padding: 8px 12px;
+    }
+
+    .booking-panel {
+        padding: 16px 14px;
+    }
+
+    .field-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .field {
+        gap: 4px;
+    }
+
+    .field label {
+        font-size: 12px;
+    }
+
+    .field input,
+    .field select {
+        padding: 8px 6px;
+        font-size: 13px;
+    }
+
+    .form-note,
+    .booking-feedback {
+        font-size: 12px;
+    }
+}
+
+@media (max-height: 560px) {
+    body {
+        height: auto;
+        min-height: 100vh;
+        overflow-y: auto;
+    }
+}

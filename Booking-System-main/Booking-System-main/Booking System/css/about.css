@@ -1,0 +1,354 @@
+
+:root {
+	--text: #fff;
+	--accent: #c4e3d2;
+	--rule: rgba(255, 255, 255, 0.24);
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	height: 100svh;
+	overflow: hidden;
+	isolation: isolate;
+	color: var(--text);
+	font-family: "Segoe UI", sans-serif;
+	background: none;
+	--page-background:
+		linear-gradient(110deg, rgba(12, 24, 21, 0.68), rgba(12, 24, 21, 0.38)),
+		url("../img/big_pool2.jpg") center / cover fixed no-repeat;
+}
+
+body::before {
+	content: "";
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	background: var(--page-background);
+	pointer-events: none;
+}
+
+html.is-leaving body {
+	animation: public-page-exit 220ms ease-in-out both;
+}
+
+html.is-entering body {
+	animation: public-page-enter 220ms ease-in-out both;
+}
+
+@keyframes public-page-exit {
+	to {
+		opacity: 0;
+		transform: translateX(-1.5%) scale(1.01);
+	}
+}
+
+@keyframes public-page-enter {
+	from {
+		opacity: 0;
+		transform: translateX(1.5%) scale(1.01);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0) scale(1);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html.is-leaving body,
+	html.is-entering body {
+		animation-duration: 1ms;
+	}
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
+}
+
+.navbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 24px;
+	width: min(100%, 1240px);
+	margin: 0 auto;
+	padding: 10px 24px;
+}
+
+.logo-text {
+	margin: 0;
+	font-size: 24px;
+}
+
+.nav-menu {
+	display: flex;
+	align-items: center;
+	gap: 28px;
+}
+
+.nav-link {
+	display: inline-block;
+	padding: 8px 0;
+	font-size: 16px;
+	transition: color 160ms ease;
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+	color: var(--accent);
+}
+
+.nav-link:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 5px;
+}
+
+.about-section {
+	flex: 1;
+	min-height: 0;
+	overflow: hidden;
+	padding: 8px 24px;
+}
+
+.container {
+	width: min(100%, 1000px);
+	height: 100%;
+	margin: 0 auto;
+}
+
+.about-details {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	grid-template-areas:
+		"title logo"
+		"description logo"
+		"day-tour overnight"
+		"amenities booking-policy"
+		"attention attention";
+	grid-template-rows: auto auto auto auto minmax(0, 1fr);
+	align-items: start;
+	column-gap: 32px;
+	height: 100%;
+	width: 100%;
+	padding: 20px 28px;
+	background: rgba(15, 25, 22, 0.64);
+}
+
+.title {
+	grid-area: title;
+	font-family: Georgia, "Times New Roman", serif;
+	font-size: 40px;
+	font-weight: 500;
+	line-height: 1.1;
+}
+
+.logo-box {
+	grid-area: logo;
+	display: flex;
+	min-width: 0;
+	min-height: 0;
+	align-items: center;
+	justify-content: center;
+	align-self: stretch;
+}
+
+.logo-box img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+.description {
+	grid-area: description;
+	max-width: 54ch;
+	margin-top: 8px;
+	margin-bottom: 4px;
+	color: rgba(255, 255, 255, 0.9);
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+.day-tour {
+	grid-area: day-tour;
+}
+
+.overnight {
+	grid-area: overnight;
+}
+
+.amenities {
+	grid-area: amenities;
+}
+
+.Booking-Policy {
+	grid-area: booking-policy;
+}
+
+.attention {
+	grid-area: attention;
+	min-height: 0;
+	overflow: hidden;
+}
+
+.day-tour,
+.overnight,
+.amenities,
+.Booking-Policy,
+.attention {
+	padding: 12px 0;
+	border-top: 1px solid var(--rule);
+	color: rgba(255, 255, 255, 0.9);
+	font-size: 13px;
+	line-height: 1.5;
+}
+
+.day-tour::first-line,
+.overnight::first-line,
+.amenities::first-line,
+.Booking-Policy::first-line {
+	color: var(--accent);
+	font-size: 15px;
+	font-weight: 700;
+}
+
+@media (max-width: 700px) {
+	.about-details {
+		grid-template-areas:
+			"title title"
+			"logo logo"
+			"description description"
+			"day-tour overnight"
+			"amenities booking-policy"
+			"attention attention";
+		grid-template-rows: auto auto auto auto auto minmax(0, 1fr);
+		column-gap: 16px;
+		padding: 16px 20px;
+	}
+
+	.logo-box {
+		height: 100px;
+	}
+
+	.title {
+		font-size: 34px;
+	}
+
+	.description {
+		font-size: 13px;
+		line-height: 1.4;
+	}
+}
+
+@media (max-width: 480px) {
+	.navbar {
+		flex-direction: column;
+		gap: 4px;
+		padding: 8px 16px;
+	}
+
+	.nav-menu {
+		gap: 22px;
+	}
+
+	.nav-link {
+		white-space: nowrap;
+	}
+
+	.about-section {
+		padding: 6px 10px;
+	}
+
+	.about-details {
+		column-gap: 12px;
+		padding: 12px 14px;
+	}
+
+	.logo-box {
+		height: 72px;
+	}
+
+	.title {
+		font-size: 28px;
+	}
+
+	.description {
+		font-size: 12px;
+		line-height: 1.35;
+	}
+
+	.day-tour,
+	.overnight,
+	.amenities,
+	.Booking-Policy,
+	.attention {
+		padding: 8px 0;
+		font-size: 11px;
+		line-height: 1.35;
+	}
+
+	.day-tour::first-line,
+	.overnight::first-line,
+	.amenities::first-line,
+	.Booking-Policy::first-line {
+		font-size: 13px;
+	}
+
+	body {
+		--page-background:
+			linear-gradient(110deg, rgba(12, 24, 21, 0.68), rgba(12, 24, 21, 0.38)),
+			url("../img/big_pool2.jpg") center / cover scroll no-repeat;
+	}
+}
+
+@media (max-height: 560px) {
+	.navbar {
+		padding-top: 4px;
+		padding-bottom: 4px;
+	}
+
+	.about-section {
+		padding-top: 4px;
+		padding-bottom: 4px;
+	}
+
+	.about-details {
+		padding-top: 8px;
+		padding-bottom: 8px;
+	}
+
+	.logo-box {
+		height: 64px;
+	}
+
+	.description,
+	.day-tour,
+	.overnight,
+	.amenities,
+	.Booking-Policy,
+	.attention {
+		font-size: 10px;
+		line-height: 1.2;
+	}
+
+	.day-tour,
+	.overnight,
+	.amenities,
+	.Booking-Policy,
+	.attention {
+		padding-top: 5px;
+		padding-bottom: 5px;
+	}
+}
